@@ -9,128 +9,51 @@
   <link rel="apple-touch-icon" href="icon.svg">
   <title>Salary Thief</title>
   <style>
-    :root { color-scheme: dark; --bg:#05070c; --panel:#10141d; --panel2:#151b26; --line:#283143; --text:#f5f7fb; --muted:#98a3b8; --green:#57f29a; --cyan:#5edcff; --red:#ff6e7f; --yellow:#ffd66e; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; background:radial-gradient(circle at 50% -20%,#1a2840 0,var(--bg) 44%); color:var(--text); }
+    :root { color-scheme:dark; --bg:#05070c; --panel:#10141d; --line:#283143; --text:#f5f7fb; --muted:#98a3b8; --green:#57f29a; --cyan:#5edcff; --red:#ff6e7f; --yellow:#ffd66e; }
+    * { box-sizing:border-box; } body { margin:0; min-height:100vh; font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; background:radial-gradient(circle at 50% -20%,#1a2840 0,var(--bg) 44%); color:var(--text); }
     .app { width:min(100%,720px); margin:auto; padding:max(20px,env(safe-area-inset-top)) 16px calc(32px + env(safe-area-inset-bottom)); }
-    header { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
-    .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px; font-size:1.2rem; }
-    .mark { width:34px; height:34px; display:grid; place-items:center; border-radius:10px; background:linear-gradient(135deg,var(--green),var(--cyan)); color:#07140f; box-shadow:0 0 24px #57f29a55; }
-    button { border:0; font:inherit; cursor:pointer; }
-    .lang, .ghost { background:#1a2130; color:var(--text); border:1px solid var(--line); border-radius:10px; padding:9px 12px; }
-    .status { border:1px solid var(--line); background:#101620dd; border-radius:18px; padding:17px; text-align:center; color:var(--muted); margin-bottom:16px; }
-    .status.live { border-color:#3b9368; color:var(--green); }
-    .main { border:1px solid #2a374a; background:linear-gradient(145deg,#111a26,#0b0e15); border-radius:24px; padding:25px 18px; text-align:center; box-shadow:0 18px 55px #0008; }
-    .label { color:var(--muted); font-size:.84rem; text-transform:uppercase; letter-spacing:.12em; }
-    .amount { margin:9px 0 4px; font-size:clamp(2.6rem,12vw,5rem); font-weight:800; letter-spacing:-.055em; color:var(--green); font-variant-numeric:tabular-nums; text-shadow:0 0 28px #57f29a45; }
-    .daily { color:var(--muted); font-size:.93rem; }
-    .progress-wrap { margin-top:24px; }
-    .progress-top { display:flex; justify-content:space-between; margin-bottom:8px; color:var(--muted); font-size:.86rem; font-variant-numeric:tabular-nums; }
-    .track { height:12px; overflow:hidden; border-radius:99px; background:#232b3b; }
-    .bar { height:100%; width:0%; border-radius:inherit; background:linear-gradient(90deg,var(--green),var(--cyan)); box-shadow:0 0 18px #5edcff99; transition:width .4s linear; }
-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:16px 0; }
-    .card { min-height:111px; border:1px solid var(--line); border-radius:16px; background:var(--panel); padding:15px; }
-    .card span { display:block; color:var(--muted); font-size:.8rem; margin-bottom:9px; }
-    .card strong { display:block; font-size:1.22rem; line-height:1.2; font-variant-numeric:tabular-nums; }
-    details { background:var(--panel); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
-    summary { cursor:pointer; padding:16px; font-weight:700; list-style:none; display:flex; justify-content:space-between; }
-    summary::after { content:'⚙'; color:var(--cyan); }
-    .settings { padding:0 16px 16px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .field { display:flex; flex-direction:column; gap:7px; color:var(--muted); font-size:.83rem; }
-    input { appearance:none; width:100%; border:1px solid var(--line); outline:none; border-radius:10px; padding:11px; background:#090d14; color:var(--text); font:inherit; }
-    input:focus { border-color:var(--cyan); box-shadow:0 0 0 3px #5edcff20; }
-    .wide { grid-column:1/-1; }
-    .save { width:100%; padding:12px; border-radius:10px; color:#031008; background:var(--green); font-weight:800; }
-    .hint { margin:2px 2px 0; color:var(--muted); font-size:.78rem; line-height:1.45; }
-    .install { width:100%; margin-top:14px; padding:12px; display:none; background:#1c3040; color:var(--cyan); border:1px solid #31536a; border-radius:10px; font-weight:700; }
-    .foot { color:#667188; font-size:.75rem; text-align:center; margin-top:18px; }
-    @media (min-width:560px) { .grid { grid-template-columns:repeat(4,1fr); } .settings { grid-template-columns:repeat(3,1fr); } }
+    header { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }.brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px; font-size:1.2rem; }.mark { width:34px; height:34px; display:grid; place-items:center; border-radius:10px; background:linear-gradient(135deg,var(--green),var(--cyan)); color:#07140f; box-shadow:0 0 24px #57f29a55; }
+    button { border:0; font:inherit; cursor:pointer; }.lang,.ghost { background:#1a2130; color:var(--text); border:1px solid var(--line); border-radius:10px; padding:9px 12px; }.status { border:1px solid var(--line); background:#101620dd; border-radius:18px; padding:17px; text-align:center; color:var(--muted); margin-bottom:16px; }.status.live { border-color:#3b9368; color:var(--green); }
+    .main { border:1px solid #2a374a; background:linear-gradient(145deg,#111a26,#0b0e15); border-radius:24px; padding:25px 18px; text-align:center; box-shadow:0 18px 55px #0008; }.label { color:var(--muted); font-size:.84rem; text-transform:uppercase; letter-spacing:.12em; }.amount { margin:9px 0 4px; font-size:clamp(2.6rem,12vw,5rem); font-weight:800; letter-spacing:-.055em; color:var(--green); font-variant-numeric:tabular-nums; text-shadow:0 0 28px #57f29a45; }.daily { color:var(--muted); font-size:.93rem; }
+    .progress-wrap { margin-top:24px; }.progress-top { display:flex; justify-content:space-between; gap:8px; margin-bottom:8px; color:var(--muted); font-size:.86rem; font-variant-numeric:tabular-nums; }.track { height:12px; overflow:hidden; border-radius:99px; background:#232b3b; }.bar { height:100%; width:0%; border-radius:inherit; background:linear-gradient(90deg,var(--green),var(--cyan)); box-shadow:0 0 18px #5edcff99; transition:width .4s linear; }
+    .section-title { margin:22px 2px 10px; font-size:.83rem; color:var(--muted); text-transform:uppercase; letter-spacing:.12em; }.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:0 0 16px; }.card { min-height:111px; border:1px solid var(--line); border-radius:16px; background:var(--panel); padding:15px; }.card span { display:block; color:var(--muted); font-size:.8rem; margin-bottom:9px; }.card strong { display:block; font-size:1.22rem; line-height:1.2; font-variant-numeric:tabular-nums; }.accent { color:var(--yellow); }.days { color:var(--cyan); }
+    details { background:var(--panel); border:1px solid var(--line); border-radius:16px; overflow:hidden; } summary { cursor:pointer; padding:16px; font-weight:700; list-style:none; display:flex; justify-content:space-between; } summary::after { content:'⚙'; color:var(--cyan); }.settings { padding:0 16px 16px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }.field { display:flex; flex-direction:column; gap:7px; color:var(--muted); font-size:.83rem; } input { appearance:none; width:100%; border:1px solid var(--line); outline:none; border-radius:10px; padding:11px; background:#090d14; color:var(--text); font:inherit; } input:focus { border-color:var(--cyan); box-shadow:0 0 0 3px #5edcff20; }.wide { grid-column:1/-1; }.save { width:100%; padding:12px; border-radius:10px; color:#031008; background:var(--green); font-weight:800; }.hint { margin:2px 2px 0; color:var(--muted); font-size:.78rem; line-height:1.45; }.install { width:100%; margin-top:14px; padding:12px; display:none; background:#1c3040; color:var(--cyan); border:1px solid #31536a; border-radius:10px; font-weight:700; }.foot { color:#667188; font-size:.75rem; text-align:center; margin-top:18px; }
+    @media (min-width:560px) { .grid { grid-template-columns:repeat(4,1fr); }.settings { grid-template-columns:repeat(3,1fr); } }
   </style>
 </head>
 <body>
   <main class="app">
-    <header>
-      <div class="brand"><div class="mark">$</div><span>Salary Thief</span></div>
-      <button class="lang" id="languageButton" type="button">繁中</button>
-    </header>
-
+    <header><div class="brand"><div class="mark">$</div><span>Salary Thief</span></div><button class="lang" id="languageButton" type="button">繁中</button></header>
     <section class="status" id="status">Not working</section>
     <section class="main">
-      <div class="label" data-i18n="earned">Earned today</div>
-      <div class="amount" id="earned">HK$0.00</div>
-      <div class="daily" id="daily">Daily estimate: HK$0.00</div>
-      <div class="progress-wrap">
-        <div class="progress-top"><span id="workedLabel">Worked: 00:00:00</span><span id="remainingLabel">Remaining: --:--:--</span></div>
-        <div class="track"><div class="bar" id="bar"></div></div>
-      </div>
+      <div class="label" data-i18n="earned">Earned today</div><div class="amount" id="earned">HK$0.00</div><div class="daily" id="daily">Daily estimate: HK$0.00</div>
+      <div class="progress-wrap"><div class="progress-top"><span id="workedLabel">Worked: 00:00:00</span><span id="remainingLabel">Remaining: --:--:--</span></div><div class="track"><div class="bar" id="bar"></div></div></div>
     </section>
-
+    <div class="section-title" data-i18n="monthlyProgress">Monthly progress</div>
+    <section class="grid">
+      <div class="card"><span data-i18n="monthEarned">Monthly earned</span><strong class="accent" id="monthEarned">HK$0.00</strong></div>
+      <div class="card"><span data-i18n="monthRemaining">Monthly remaining</span><strong id="monthRemaining">HK$0.00</strong></div>
+      <div class="card"><span data-i18n="workdaysLeft">Workdays left</span><strong class="days" id="workdaysLeft">0</strong></div>
+      <div class="card"><span data-i18n="monthProgress">Month progress</span><strong id="monthProgress">0 / 0</strong></div>
+    </section>
     <section class="grid">
       <div class="card"><span data-i18n="timeWorked">Time worked</span><strong id="worked">00:00:00</strong></div>
       <div class="card"><span data-i18n="timeRemaining">Time remaining</span><strong id="remaining">--:--:--</strong></div>
       <div class="card"><span data-i18n="perMinute">Money / minute</span><strong id="perMinute">HK$0.00</strong></div>
       <div class="card"><span data-i18n="perSecond">Money / second</span><strong id="perSecond">HK$0.0000</strong></div>
     </section>
-
-    <details>
-      <summary data-i18n="settings">Settings</summary>
-      <form class="settings" id="settingsForm">
-        <label class="field wide"><span data-i18n="monthlySalary">Monthly salary (HK$)</span><input id="salary" type="number" min="0" step="0.01" inputmode="decimal" required></label>
-        <label class="field"><span data-i18n="startTime">Start time</span><input id="start" type="time" required></label>
-        <label class="field"><span data-i18n="endTime">End time</span><input id="end" type="time" required></label>
-        <div class="wide hint" data-i18n="weekdayRule">Your monthly salary is divided by the actual Monday–Friday weekday count in the current calendar month. Lunch is paid.</div>
-        <div class="wide"><button class="save" type="submit" data-i18n="save">Save settings</button></div>
-      </form>
-    </details>
-    <button id="installButton" class="install" type="button" data-i18n="install">Install Salary Thief</button>
-    <p class="foot" data-i18n="privacy">Your settings stay only on this device.</p>
+    <details><summary data-i18n="settings">Settings</summary><form class="settings" id="settingsForm"><label class="field wide"><span data-i18n="monthlySalary">Monthly salary (HK$)</span><input id="salary" type="number" min="0" step="0.01" inputmode="decimal" required></label><label class="field"><span data-i18n="startTime">Start time</span><input id="start" type="time" required></label><label class="field"><span data-i18n="endTime">End time</span><input id="end" type="time" required></label><div class="wide hint" data-i18n="weekdayRule">Your monthly salary is divided by the actual Monday–Friday weekday count in the current calendar month. Lunch is paid.</div><div class="wide"><button class="save" type="submit" data-i18n="save">Save settings</button></div></form></details>
+    <button id="installButton" class="install" type="button" data-i18n="install">Install Salary Thief</button><p class="foot" data-i18n="privacy">Your settings stay only on this device.</p>
   </main>
-
-  <script>
-    const $ = id => document.getElementById(id);
-    const defaults = { salary: 30000, start: '09:00', end: '18:00', lang: 'en' };
-    let settings = { ...defaults, ...JSON.parse(localStorage.getItem('salaryThiefSettings') || '{}') };
-    const text = {
-      en: { earned:'Earned today', notWorking:'Not working', working:'Working — salary is counting', weekend:'Weekend — not working', before:'Work has not started', finished:'Workday completed', daily:'Daily estimate', worked:'Worked', remaining:'Remaining', timeWorked:'Time worked', timeRemaining:'Time remaining', perMinute:'Money / minute', perSecond:'Money / second', settings:'Settings', monthlySalary:'Monthly salary (HK$)', startTime:'Start time', endTime:'End time', weekdayRule:'Your monthly salary is divided by the actual Monday–Friday weekday count in the current calendar month. Lunch is paid.', save:'Save settings', saved:'Saved!', install:'Install Salary Thief', privacy:'Your settings stay only on this device.' },
-      zh: { earned:'今日已賺', notWorking:'非工作時間', working:'工作中 — 薪金正在累積', weekend:'週末 — 非工作日', before:'尚未開始工作', finished:'今日工作完成', daily:'每日預計收入', worked:'已工作', remaining:'剩餘時間', timeWorked:'已工作時間', timeRemaining:'剩餘時間', perMinute:'每分鐘收入', perSecond:'每秒鐘收入', settings:'設定', monthlySalary:'月薪（HK$）', startTime:'開始時間', endTime:'結束時間', weekdayRule:'月薪會按本月實際星期一至五的工作日數計算。午飯時間為有薪。', save:'儲存設定', saved:'已儲存！', install:'安裝 Salary Thief', privacy:'你的設定只會儲存在此裝置。' }
-    };
-    const money = (n, digits=2) => 'HK$' + (Number.isFinite(n) ? n : 0).toLocaleString('en-HK',{minimumFractionDigits:digits,maximumFractionDigits:digits});
-    const duration = s => { s=Math.max(0,Math.floor(s)); const h=String(Math.floor(s/3600)).padStart(2,'0'),m=String(Math.floor(s%3600/60)).padStart(2,'0'),x=String(s%60).padStart(2,'0'); return `${h}:${m}:${x}`; };
-    const weekdaysInMonth = d => { const y=d.getFullYear(), m=d.getMonth(); let n=0; for(let x=new Date(y,m,1);x.getMonth()===m;x.setDate(x.getDate()+1)){const day=x.getDay();if(day>0&&day<6)n++;} return n; };
-    const timeToday = (date, value) => { const [h,m]=value.split(':').map(Number); const d=new Date(date); d.setHours(h,m,0,0); return d; };
-    function renderLanguage(){
-      const t=text[settings.lang]; document.documentElement.lang=settings.lang==='zh'?'zh-Hant':'en';
-      $('languageButton').textContent=settings.lang==='en'?'繁中':'EN';
-      document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t[el.dataset.i18n]);
-    }
-    function update(){
-      const now=new Date(), t=text[settings.lang], day=now.getDay();
-      const monthly=Math.max(0,parseFloat(settings.salary)||0), days=weekdaysInMonth(now), daily=monthly/days;
-      const start=timeToday(now,settings.start), end=timeToday(now,settings.end);
-      let secondsTotal=(end-start)/1000;
-      const invalid=secondsTotal<=0;
-      let secondsWorked=0, status=t.notWorking;
-      if(day===0||day===6) status=t.weekend;
-      else if(invalid) status=t.notWorking;
-      else if(now<start) status=t.before;
-      else if(now>=end){ secondsWorked=secondsTotal; status=t.finished; }
-      else { secondsWorked=(now-start)/1000; status=t.working; }
-      const live=day>0&&day<6&&!invalid&&now>=start&&now<end;
-      const displayWorked=live?secondsWorked:0, earned=live?daily*(secondsWorked/secondsTotal):0;
-      const remaining=live?secondsTotal-secondsWorked:0, progress=live?(secondsWorked/secondsTotal)*100:0;
-      $('status').textContent=status; $('status').classList.toggle('live',live);
-      $('earned').textContent=money(earned); $('daily').textContent=`${t.daily}: ${money(daily)}`;
-      $('worked').textContent=duration(displayWorked); $('remaining').textContent=live?duration(remaining):'--:--:--';
-      $('workedLabel').textContent=`${t.worked}: ${duration(displayWorked)}`; $('remainingLabel').textContent=`${t.remaining}: ${live?duration(remaining):'--:--:--'}`;
-      $('perMinute').textContent=money(secondsTotal?daily/(secondsTotal/60):0); $('perSecond').textContent=money(secondsTotal?daily/secondsTotal:0,4); $('bar').style.width=progress+'%';
-    }
-    function populate(){ $('salary').value=settings.salary; $('start').value=settings.start; $('end').value=settings.end; renderLanguage(); update(); }
-    $('settingsForm').addEventListener('submit',e=>{e.preventDefault(); settings.salary=$('salary').value;settings.start=$('start').value;settings.end=$('end').value;localStorage.setItem('salaryThiefSettings',JSON.stringify(settings));const b=e.submitter;b.textContent=text[settings.lang].saved;setTimeout(()=>b.textContent=text[settings.lang].save,1200);update();});
-    $('languageButton').addEventListener('click',()=>{settings.lang=settings.lang==='en'?'zh':'en';localStorage.setItem('salaryThiefSettings',JSON.stringify(settings));renderLanguage();update();});
-    let deferredPrompt; window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('installButton').style.display='block';});
-    $('installButton').addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$('installButton').style.display='none';});
-    if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'));
-    populate(); setInterval(update,250);
-  </script>
+<script>
+const $=id=>document.getElementById(id);const defaults={salary:30000,start:'09:00',end:'18:00',lang:'en'};let settings={...defaults,...JSON.parse(localStorage.getItem('salaryThiefSettings')||'{}')};
+const text={en:{earned:'Earned today',notWorking:'Not working',working:'Working — salary is counting',weekend:'Weekend — not working',before:'Work has not started',finished:'Workday completed',daily:'Daily estimate',worked:'Worked',remaining:'Remaining',timeWorked:'Time worked',timeRemaining:'Time remaining',perMinute:'Money / minute',perSecond:'Money / second',monthlyProgress:'Monthly progress',monthEarned:'Monthly earned',monthRemaining:'Monthly remaining',workdaysLeft:'Workdays left',monthProgress:'Month progress',settings:'Settings',monthlySalary:'Monthly salary (HK$)',startTime:'Start time',endTime:'End time',weekdayRule:'Your monthly salary is divided by the actual Monday–Friday weekday count in the current calendar month. Lunch is paid.',save:'Save settings',saved:'Saved!',install:'Install Salary Thief',privacy:'Your settings stay only on this device.'},zh:{earned:'今日已賺',notWorking:'非工作時間',working:'工作中 — 薪金正在累積',weekend:'週末 — 非工作日',before:'尚未開始工作',finished:'今日工作完成',daily:'每日預計收入',worked:'已工作',remaining:'剩餘時間',timeWorked:'已工作時間',timeRemaining:'剩餘時間',perMinute:'每分鐘收入',perSecond:'每秒鐘收入',monthlyProgress:'本月進度',monthEarned:'本月已賺',monthRemaining:'本月剩餘',workdaysLeft:'剩餘工作日',monthProgress:'本月工作日進度',settings:'設定',monthlySalary:'月薪（HK$）',startTime:'開始時間',endTime:'結束時間',weekdayRule:'月薪會按本月實際星期一至五的工作日數計算。午飯時間為有薪。',save:'儲存設定',saved:'已儲存！',install:'安裝 Salary Thief',privacy:'你的設定只會儲存在此裝置。'}};
+const money=(n,d=2)=>'HK$'+(Number.isFinite(n)?n:0).toLocaleString('en-HK',{minimumFractionDigits:d,maximumFractionDigits:d});const duration=s=>{s=Math.max(0,Math.floor(s));return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor(s%3600/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`};
+const isWeekday=d=>d.getDay()>0&&d.getDay()<6;function weekdayCounts(now){const y=now.getFullYear(),m=now.getMonth(),today=new Date(y,m,now.getDate());let total=0,completed=0,remaining=0;for(let d=new Date(y,m,1);d.getMonth()===m;d.setDate(d.getDate()+1)){if(isWeekday(d)){total++;if(d<today)completed++;else if(d>today)remaining++;}}return{total,completed,remaining,todayWeekday:isWeekday(today)}}
+const timeToday=(date,value)=>{const[h,m]=value.split(':').map(Number),d=new Date(date);d.setHours(h,m,0,0);return d};function renderLanguage(){const t=text[settings.lang];document.documentElement.lang=settings.lang==='zh'?'zh-Hant':'en';$('languageButton').textContent=settings.lang==='en'?'繁中':'EN';document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t[el.dataset.i18n])}
+function update(){const now=new Date(),t=text[settings.lang],day=now.getDay(),monthly=Math.max(0,parseFloat(settings.salary)||0),wc=weekdayCounts(now),daily=monthly/wc.total,start=timeToday(now,settings.start),end=timeToday(now,settings.end),total=(end-start)/1000,invalid=total<=0;let workedSeconds=0,status=t.notWorking;if(day===0||day===6)status=t.weekend;else if(invalid)status=t.notWorking;else if(now<start)status=t.before;else if(now>=end){workedSeconds=total;status=t.finished}else{workedSeconds=(now-start)/1000;status=t.working}const live=day>0&&day<6&&!invalid&&now>=start&&now<end,displayWorked=live?workedSeconds:0,earned=live?daily*(workedSeconds/total):0,remaining=live?total-workedSeconds:0,progress=live?workedSeconds/total*100:0;
+let monthlyEarned=daily*wc.completed;if(wc.todayWeekday){if(now>=end&&!invalid)monthlyEarned+=daily;else if(live)monthlyEarned+=earned}monthlyEarned=Math.min(monthly,monthlyEarned);const monthlyRemaining=Math.max(0,monthly-monthlyEarned);let daysLeft=wc.remaining;if(wc.todayWeekday&&now<end)daysLeft++;$('status').textContent=status;$('status').classList.toggle('live',live);$('earned').textContent=money(earned);$('daily').textContent=`${t.daily}: ${money(daily)}`;$('worked').textContent=duration(displayWorked);$('remaining').textContent=live?duration(remaining):'--:--:--';$('workedLabel').textContent=`${t.worked}: ${duration(displayWorked)}`;$('remainingLabel').textContent=`${t.remaining}: ${live?duration(remaining):'--:--:--'}`;$('perMinute').textContent=money(total?daily/(total/60):0);$('perSecond').textContent=money(total?daily/total:0,4);$('bar').style.width=progress+'%';$('monthEarned').textContent=money(monthlyEarned);$('monthRemaining').textContent=money(monthlyRemaining);$('workdaysLeft').textContent=daysLeft;$('monthProgress').textContent=`${wc.completed+(wc.todayWeekday&&now>=end?1:0)} / ${wc.total}`}
+function populate(){$('salary').value=settings.salary;$('start').value=settings.start;$('end').value=settings.end;renderLanguage();update()}$('settingsForm').addEventListener('submit',e=>{e.preventDefault();settings.salary=$('salary').value;settings.start=$('start').value;settings.end=$('end').value;localStorage.setItem('salaryThiefSettings',JSON.stringify(settings));const b=e.submitter;b.textContent=text[settings.lang].saved;setTimeout(()=>b.textContent=text[settings.lang].save,1200);update()});$('languageButton').addEventListener('click',()=>{settings.lang=settings.lang==='en'?'zh':'en';localStorage.setItem('salaryThiefSettings',JSON.stringify(settings));renderLanguage();update()});let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('installButton').style.display='block'});$('installButton').addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$('installButton').style.display='none'});if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'));populate();setInterval(update,250);
+</script>
 </body>
 </html>
